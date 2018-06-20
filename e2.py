@@ -1,5 +1,5 @@
 listapersonas=[]
-import os
+import os #para usar system pause
 nombre = input("Ingresa tu nombre:")
 apellido = input("Ingresa tu apellido:")
 edad = input("ingresa tu edad:")
