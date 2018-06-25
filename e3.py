@@ -184,10 +184,12 @@ def ingresar(personas):
 		key = input("Ingrese contraseña:")
 		if name in personas and personas[name][1]==key:
 			print("Usuario correcto")
+
 		#	print(len(listatemp))
 			
-		#	print("Bienvenido",personas.get(name)[2],personas.get(name)[3],"\nTu edad es:",personas.get(name)[4],"\nTu tarjeta de credito es:",personas.get(name)[5],"\nTu correo de paypal es:",personas.get(name[6]),"\nTu contraseña de paypal es:",personas.get
-		#		(name[7]))
+			print("Bienvenido",personas.get(name)[2],personas.get(name)[3],"\nTu edad es:",personas.get(name)[4],"\nTu tarjeta de credito es:",personas.get(name)[5],"\nTu correo de paypal es:",personas.get(name)[6],"\nTu contraseña de paypal es:",personas.get(name)[7])
+           
+           
 			break
 		else:
 			print("datos incorrectos")
