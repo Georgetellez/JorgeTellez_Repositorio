@@ -1,6 +1,15 @@
-from e3 import nombre,edad,tarjetacredito,paypalcuenta
+def imprimirarchivo(cadena):
+	archivousuario = open("archivousuario.txt","a")
+	archivousuario.write("\n"+cadena)
+	archivousuario.close()
 
-archivousuario = open("archivousuario.txt","w")
-cadena=nombre()+str(edad()+tarjetacredito()+paypalcuenta())
-archivousuario.write(cadena)
-archivousuario.close()
+
+def leerarchivo(nombrearchivo):
+	archivousuario = open(nombrearchivo,"r")
+	lineas = archivousuario.readlines
+	
+
+
+
+
+

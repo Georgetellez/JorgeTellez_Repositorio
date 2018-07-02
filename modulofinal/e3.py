@@ -1,6 +1,9 @@
+import re
+import getpass
+import modulos
 personas={}
 listatemp=[]
-import re
+cadenaaux=""
 def passwordpaypal(key1):
     # Declara las variables
     letters = len(key1)
@@ -109,22 +112,25 @@ def user(usuario):
         return True
 # Funcion para simular el registro
 def register():
-	name = input("Ingrese un nombre de usuario:")
-	while 1:
-		answer01 = user(name)
-		if answer01 == True and not(name in personas):
-			break
-		else:
-			name = input("Usuario ya existente, ingrese un nombre de usuario:")
-	listatemp.append(name)
-	key=input("Ingrese una contraseña:")
-	while 1:
-		answer02 = password(key)
-		if answer02 == True:
-			break
-		else:
-			key = input("Ingrese una contraseña:")
-	listatemp.append(key)
+    name = input("Ingrese un nombre de usuario:")
+    while 1:
+        answer01 = user(name)
+        if answer01 == True and not(name in personas):
+            break
+        else:
+            name = input("Usuario ya existente, ingrese un nombre de usuario:")
+    listatemp.append(name)
+
+    key=getpass.getpass("Ingrese una contraseña:")
+    while 1:
+        answer02 = password(key)
+        if answer02 == True:
+            break
+        else:
+            key = getpass.getpass("Ingrese una contraseña:")
+    listatemp.append(key)
+  
+    return name
 
 
 def nombre():
@@ -168,54 +174,54 @@ def paypalcuenta():
 	listatemp.append(correo)
 	
 
-	key1=input("Ingrese una contraseña:")
+	key1=getpass.getpass("Ingrese una contraseña:")
 	while 1:
-		answer03 = passwordpaypal(key1)
+		answer03 = passwordpaypal(key1) 
 		if answer03 == True:
 			break
 		else:
-			key1 = input("Ingrese una contraseña:")
+			key1 = getpass.getpass("Ingrese tu contraseña de paypal:")
 	listatemp.append(key1)
 	
-
 def ingresar(personas):
-	while True:
-		name = input("Ingrese el usuario:")
-		key = input("Ingrese contraseña:")
-		if name in personas and personas[name][1]==key:
-			print("Usuario correcto")
+    while True:
+        name = input("Ingrese el usuario:")
+        key= input("Ingrese la contraseña:")
+        if name in personas and personas[name][1]==key:
+            print("Usuario correcto")
+            print("Bienvenido:",personas.get(name)[2],personas.get(name)[3],"\nTu edad es:",personas.get(name)[4],"\nTu tarjeta de credito es:",personas.get(name)[5],"\nTu correo de paypal es:",personas.get(name)[6],"\nTu contraseña de paypal es:",personas.get(name)[7])
+            #cadenaaux = "Bienvenido"+personas.get(name)[2]+personas.get(name)[3]+"\nTu edad es:"+str(personas.get(name)[4])+"\nTu tarjeta de credito es:"+str(personas.get(name)[5])+"\nTu correo de paypal es:"+personas.get(name)[6]+"\nTu contraseña de paypal es:"+str(personas.get(name)[7])
+            #modulos.imprimirarchivo(cadenaaux)
+        else:
+            print("Datos incorrectos")
 
-		#	print(len(listatemp))
-			
-			print("Bienvenido",personas.get(name)[2],personas.get(name)[3],"\nTu edad es:",personas.get(name)[4],"\nTu tarjeta de credito es:",personas.get(name)[5],"\nTu correo de paypal es:",personas.get(name)[6],"\nTu contraseña de paypal es:",personas.get(name)[7])
-           
-           
-			break
-		else:
-			print("datos incorrectos")
 
-		
 
 def menu():
-	while True:
-		print("Nuevo usuario-n, Usuario existente-u, Salir-s")
-		opcion= input().lower()
-		if(opcion=="n"):
-			listatemp.clear()
-			register()
-			nombre()
-			edad()
-			tarjetacredito()
-			paypalcuenta()
-			personas[listatemp[0]]=listatemp
-			print("Usuario registrado")
-
-			#ingresar(personas)
-		elif(opcion=="u"):
-			ingresar(personas)
-		elif(opcion=="s"):
-			break
-		else:
-			print("opcion invalida")
-
+    while True:
+        print("Nuevo usuario-n, Usuario existente-u, Salir-s")
+        opcion=input().lower()
+        if(opcion=="n"):
+            listatemp.clear()
+            name = register()
+            nombre()
+            edad()
+            tarjetacredito()
+            paypalcuenta()
+            personas[listatemp[0]]=listatemp
+            print("Usuario registrado")
+            cadenaaux = "Bienvenido:"+personas.get(name)[2]+personas.get(name)[3]+"\nTu edad es:"+str(personas.get(name)[4])+"\nTu tarjeta de credito es:"+str(personas.get(name)[5])+"\nTu correo de paypal es:"+personas.get(name)[6]+"\nTu contraseña de paypal es:"+str(personas.get(name)[7])
+            modulos.imprimirarchivo(cadenaaux)
+            modulos.leerarchivo(nombrearchivo)
+        elif(opcion=="u"):
+            ingresar(personas)
+        elif(opcion=="s"):
+            break
+        else:
+            print("opción invalida")
 menu()
+
+
+
+
+
