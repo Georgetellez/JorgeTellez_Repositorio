@@ -301,39 +301,42 @@ def comprar_articulo():
     query = con.cursor()
     loop = 'true'
     while(loop=='true'):
-        codigo = input("Digite el codigo del artículo que desea comprar: ")
+        codigo = int(input("Digite el codigo del artículo que desea comprar: "))
         inventario = int(input ("Digite la cantidad: "))
         #if  (query.execute("SELECT codigo, inventario FROM 'ARTICULOS' WHERE 'codigo'='"+codigo+"' AND 'inventario'='"+inventario+"'")):
-        if(codigo == "1"):
+        if(codigo == 1):
                 tenis =Tenis - inventario
-                productos = "update articulos set inventario='"+str(tenis)+"' where codigo="+codigo
+                cantidad = inventario*650
+                productos = "update articulos set inventario='"+str(tenis)+"' where codigo="+str(codigo)
                 query.execute(productos)
                 con.commit()
                 tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nTenis\t\t1\t\t650"+"\nTotal:$650 \nGracias por tú compra:"+listatemp.pop(0)
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nTenis\t\t"+str(inventario)+"\t\t650"+"\nTotal: $"+str(cantidad)+"\nGracias por tú compra:"+listatemp.pop(0)
                 modulos.imprimirticket(productosaux)
                 print("Gracias por su compra vuelva pronto")
                 os.system("pause")
                 sys.exit()
-        elif(codigo== "2"):
+        elif(codigo== 2):
                 playera = Playera - inventario
-                productos = "update articulos set inventario='"+str(playera)+"' where codigo="+codigo
+                cantidad = inventario*200
+                productos = "update articulos set inventario='"+str(playera)+"' where codigo="+str(codigo)
                 query.execute(productos)
                 con.commit()
                 tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPlayera \t\t1\t\t200"+"\nTotal:$200 \nGracias por tú compra:"+listatemp.pop(0)
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPlayera \t\t"+str(inventario)+"\t\t200"+"\nTotal: $"+str(cantidad)+"\nGracias por tú compra:"+listatemp.pop(0)
                 modulos.imprimirticket(productosaux)
                 print("Gracias por su compra vuelva pronto")
                 os.system("pause")
                 sys.exit()
 
-        elif(codigo=="3"):
+        elif(codigo==3):
                 pantalon = Pantalon - inventario
-                productos = "update articulos set inventario='"+str(pantalon)+"' where codigo="+codigo
+                cantidad = inventario*500
+                productos = "update articulos set inventario='"+str(pantalon)+"' where codigo="+str(codigo)
                 query.execute(productos)
                 con.commit()
                 tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:\n"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPantalon \t\t1\t\t500"+"\nTotal:$500 \nGracias por tú compra:"+listatemp.pop(0)
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:\n"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPantalon \t\t"+str(inventario)+"\t\t500"+"\nTotal: $"+str(cantidad)+"\nGracias por tú compra:"+listatemp.pop(0)
                 modulos.imprimirticket(productosaux)
                 print("Gracias por su compra vuelva pronto")
                 os.system("pause")
@@ -374,7 +377,7 @@ def Cliente():
 def ingresar():
     os.system("cls")
     while True:
-        opc=input("\n1. Administrador  \n2.Cliente  \n3.Regresar"+"\n¿Qué perfil vas a escoger?:")
+        opc=input("\n1.Administrador  \n2.Cliente  \n3.Regresar"+"\n¿Qué perfil vas a escoger?:")
         if(opc=="1"):
             os.system("cls")
             print("----Adminsitrador----")
