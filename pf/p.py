@@ -244,94 +244,6 @@ def eliminar_articulo():
             sys.exit()
         else:
             print("Digite una opción valida: ")
-
-
-def comprar_articulo():
-    os.system("cls")
-    print("Bienvenido a la tienda en linea")
-    print("--Artículos disponibles--")
-    print("")
-
-    con = sqlite3.connect("articulos.s3db")
-    cursor = con.cursor()
-    cursor.execute("select * from articulos")
-
-    print("---Articulos---"+"\n")
-    print("------\t\t-------\t\t------\t\t------")
-    print("Codigo\t\tNombre\t\tPrecio\t\tInventario")
-    print("------\t\t-------\t\t------\t\t------")
-    print("")
-
-    for articulo in cursor:
-        print(str(articulo[0])+"\t\t"+articulo[1]+"\t\t"+articulo[2]+"\t\t"+articulo[3])
-        print("")
-
-    query = con.cursor()
-    loop = 'true'
-    while(loop=='true'):
-        codigo = input("Digite el codigo del artículo que desea comprar: ")
-        inventario = int(input ("Digite la cantidad: "))
-        #if  (query.execute("SELECT codigo, inventario FROM 'ARTICULOS' WHERE 'codigo'='"+codigo+"' AND 'inventario'='"+inventario+"'")):
-        if(codigo == "1"):
-                tenis =Tenis - inventario
-                productos = "update articulos set inventario='"+str(tenis)+"' where codigo="+codigo
-                query.execute(productos)
-                con.commit()
-                tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nCompraste:"+"\nTenis: 650"+"\nTotal:$650 \nGracias por su compra"
-                modulos.imprimirticket(productosaux)
-                sys.exit()
-        elif(codigo== "2"):
-                playera = Playera - inventario
-                productos = "update articulos set inventario='"+str(playera)+"' where codigo="+codigo
-                query.execute(productos)
-                con.commit()
-                tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nCompraste:"+"\nPlayera : 200"+"\nTotal:$200 \nGracias por su compra"
-                modulos.imprimirticket(productosaux)
-                sys.exit()
-
-        elif(codigo=="3"):
-                pantalon = Pantalon - inventario
-                productos = "update articulos set inventario='"+str(pantalon)+"' where codigo="+codigo
-                query.execute(productos)
-                con.commit()
-                tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nCompraste:"+"\nPantalon : 500"+"\nTotal:$500 \nGracias por su compra"
-                modulos.imprimirticket(productosaux)
-                sys.exit()
-
-
-        else:
-            print("\nDatos erroneos")
-
-    con.close()
-
-def Administrador():
-    os.system("cls")
-    #Código por parte del canal de youtube https://www.youtube.com/watch?v=h44c1Ev4i2k
-    print("--Información de artículos--"+"\n")
-    print("1.Agregar artículo"+"\n"+"2. Ver artículo(s)"+"\n"+"3.Modificar artículo"+"\n"+"4.Eliminar artículo"+"\n"+"5.Salir"+"\n")
-    while True:
-        op1 = input("Elige una opcion: ")
-        if (op1 == "1"):
-            agregar_articulo()
-        elif (op1 == "2"):
-            ver_articulo()
-        elif (op1 == "3"):
-            modificar_articulo()
-        elif (op1 == "4"):
-            eliminar_articulo()
-        elif (op1 == "5"):
-            sys.exit()
-        else:
-            print("Digite una opción valida: ")
-
-
-def Cliente():
-    os.system("cls")
-    comprar_articulo()
-
 def register():
     os.system("cls")
     print("---REGISTRO---")
@@ -366,6 +278,96 @@ def register():
         print("Digite una opción valida: ")
 
 
+def comprar_articulo():
+    os.system("cls")
+    print("Bienvenido a la tienda en linea")
+    print("--Artículos disponibles--")
+    print("")
+
+    con = sqlite3.connect("articulos.s3db")
+    cursor = con.cursor()
+    cursor.execute("select * from articulos")
+
+    print("---Articulos---"+"\n")
+    print("------\t\t-------\t\t------\t\t------")
+    print("Codigo\t\tNombre\t\tPrecio\t\tInventario")
+    print("------\t\t-------\t\t------\t\t------")
+    print("")
+
+    for articulo in cursor:
+        print(str(articulo[0])+"\t\t"+articulo[1]+"\t\t"+articulo[2]+"\t\t"+articulo[3])
+        print("")
+
+    query = con.cursor()
+    loop = 'true'
+    while(loop=='true'):
+        codigo = input("Digite el codigo del artículo que desea comprar: ")
+        inventario = int(input ("Digite la cantidad: "))
+        #if  (query.execute("SELECT codigo, inventario FROM 'ARTICULOS' WHERE 'codigo'='"+codigo+"' AND 'inventario'='"+inventario+"'")):
+        if(codigo == "1"):
+                tenis =Tenis - inventario
+                productos = "update articulos set inventario='"+str(tenis)+"' where codigo="+codigo
+                query.execute(productos)
+                con.commit()
+                tiempoactual=str(datetime.now())
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nTenis\t\t1\t650"+"\nTotal:$650 \nGracias por tú compra:"+listatemp.pop(0)
+                modulos.imprimirticket(productosaux)
+                print("Gracias por su compra vuelva pronto")
+                sys.exit()
+        elif(codigo== "2"):
+                playera = Playera - inventario
+                productos = "update articulos set inventario='"+str(playera)+"' where codigo="+codigo
+                query.execute(productos)
+                con.commit()
+                tiempoactual=str(datetime.now())
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPlayera \t\t1\t200"+"\nTotal:$200 \nGracias por tú compra:"+listatemp.pop(0)
+                modulos.imprimirticket(productosaux)
+                print("Gracias por su compra vuelva pronto")
+                sys.exit()
+
+        elif(codigo=="3"):
+                pantalon = Pantalon - inventario
+                productos = "update articulos set inventario='"+str(pantalon)+"' where codigo="+codigo
+                query.execute(productos)
+                con.commit()
+                tiempoactual=str(datetime.now())
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:\n"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPantalon \t\t1\t500"+"\nTotal:$500 \nGracias por tú compra:"+listatemp.pop(0)
+                modulos.imprimirticket(productosaux)
+                print("Gracias por su compra vuelva pronto")
+                sys.exit()
+
+
+        else:
+            print("\nDatos erroneos")
+
+    con.close()
+
+def Administrador():
+    os.system("cls")
+    #Código  de adnministrador, modificar_articulo,eliminar_articulo, ver_articulo, agregar_articulo la obtuve por parte del canal de youtube https://www.youtube.com/watch?v=h44c1Ev4i2k y lo modifique conforme a mi tabla
+    print("--Información de artículos--"+"\n")
+    print("1.Agregar artículo"+"\n"+"2. Ver artículo(s)"+"\n"+"3.Modificar artículo"+"\n"+"4.Eliminar artículo"+"\n"+"5.Salir"+"\n")
+    while True:
+        op1 = input("Elige una opcion: ")
+        if (op1 == "1"):
+            agregar_articulo()
+        elif (op1 == "2"):
+            ver_articulo()
+        elif (op1 == "3"):
+            modificar_articulo()
+        elif (op1 == "4"):
+            eliminar_articulo()
+        elif (op1 == "5"):
+            sys.exit()
+        else:
+            print("Digite una opción valida: ")
+
+
+def Cliente():
+    os.system("cls")
+    comprar_articulo()
+
+
 def ingresar():
     os.system("cls")
     while True:
@@ -378,6 +380,7 @@ def ingresar():
             if name in personas and personas[name][1]==key:
                 print("Usuario correcto")
                 print("Bienvenido:",name)
+                os.system("pause")
                 Administrador()
 
         elif(opc=="2"):
@@ -388,6 +391,7 @@ def ingresar():
             if name in personas and personas[name][1]==key:
                 print("Usuario correcto")
                 print("Bienvenido:",name)
+                os.system("pause")
                 Cliente()
 
         elif(opc=="3"):
