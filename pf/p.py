@@ -228,7 +228,7 @@ def eliminar_articulo():
         print("")
     while True:
         print("")
-        odigo = input("Digite el codigo del artículo que desea eliminar: ")
+        codigo = input("Digite el codigo del artículo que desea eliminar: ")
         print("")
         sql= "delete from articulos where codigo="+codigo
 
@@ -310,9 +310,10 @@ def comprar_articulo():
                 query.execute(productos)
                 con.commit()
                 tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nTenis\t\t1\t650"+"\nTotal:$650 \nGracias por tú compra:"+listatemp.pop(0)
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nTenis\t\t1\t\t650"+"\nTotal:$650 \nGracias por tú compra:"+listatemp.pop(0)
                 modulos.imprimirticket(productosaux)
                 print("Gracias por su compra vuelva pronto")
+                os.system("pause")
                 sys.exit()
         elif(codigo== "2"):
                 playera = Playera - inventario
@@ -320,9 +321,10 @@ def comprar_articulo():
                 query.execute(productos)
                 con.commit()
                 tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPlayera \t\t1\t200"+"\nTotal:$200 \nGracias por tú compra:"+listatemp.pop(0)
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPlayera \t\t1\t\t200"+"\nTotal:$200 \nGracias por tú compra:"+listatemp.pop(0)
                 modulos.imprimirticket(productosaux)
                 print("Gracias por su compra vuelva pronto")
+                os.system("pause")
                 sys.exit()
 
         elif(codigo=="3"):
@@ -331,9 +333,10 @@ def comprar_articulo():
                 query.execute(productos)
                 con.commit()
                 tiempoactual=str(datetime.now())
-                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:\n"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPantalon \t\t1\t500"+"\nTotal:$500 \nGracias por tú compra:"+listatemp.pop(0)
+                productosaux="-------FIT PRODUCTS---------"+"\nFecha actual:\n"+tiempoactual+"\nProducto \tCantidad\tPrecio"+"\nPantalon \t\t1\t\t500"+"\nTotal:$500 \nGracias por tú compra:"+listatemp.pop(0)
                 modulos.imprimirticket(productosaux)
                 print("Gracias por su compra vuelva pronto")
+                os.system("pause")
                 sys.exit()
 
 
@@ -346,7 +349,7 @@ def Administrador():
     os.system("cls")
     #Código  de adnministrador, modificar_articulo,eliminar_articulo, ver_articulo, agregar_articulo la obtuve por parte del canal de youtube https://www.youtube.com/watch?v=h44c1Ev4i2k y lo modifique conforme a mi tabla
     print("--Información de artículos--"+"\n")
-    print("1.Agregar artículo"+"\n"+"2. Ver artículo(s)"+"\n"+"3.Modificar artículo"+"\n"+"4.Eliminar artículo"+"\n"+"5.Salir"+"\n")
+    print("1.Agregar artículo"+"\n"+"2. Ver artículo(s)"+"\n"+"3.Modificar artículo"+"\n"+"4.Eliminar artículo"+"\n"+"5.Regresar"+"\n")
     while True:
         op1 = input("Elige una opcion: ")
         if (op1 == "1"):
@@ -358,7 +361,7 @@ def Administrador():
         elif (op1 == "4"):
             eliminar_articulo()
         elif (op1 == "5"):
-            sys.exit()
+            menu()
         else:
             print("Digite una opción valida: ")
 
@@ -371,7 +374,7 @@ def Cliente():
 def ingresar():
     os.system("cls")
     while True:
-        opc=input("\n1. Administrador  \n2.Cliente  \n3.Salir"+"\n¿Qué perfil vas a escoger?:")
+        opc=input("\n1. Administrador  \n2.Cliente  \n3.Regresar"+"\n¿Qué perfil vas a escoger?:")
         if(opc=="1"):
             os.system("cls")
             print("----Adminsitrador----")
@@ -395,7 +398,7 @@ def ingresar():
                 Cliente()
 
         elif(opc=="3"):
-            break
+            menu()
 
         else:
             print("Datos incorrectos/ Opción invalida")
